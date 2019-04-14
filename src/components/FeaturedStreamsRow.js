@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
+import {StreamerTable} from "./StreamerTable";
 const clientId = 'ofnmc9arbsv2hfb72z7azqedk9ljjc';
 axios.defaults.headers.common['Client-ID'] = clientId;
 
-export class FeaturedStreams extends Component {
+export class FeaturedStreamsRow extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -44,18 +45,11 @@ export class FeaturedStreams extends Component {
     render() {
         // set streams state as variable
         let streams = this.state.streams;
-        const streamsList = streams.map((stream) =>
-            <li>
-                <p>{stream.user_name} | {stream.title}</p>
-                <p>{stream.viewer_count}</p>
-            </li>
-        );
 
         return (
             <div className="FeaturedStreams">
-                <ul>
-                    {streamsList }
-                </ul>
+              <h1 className={'p-5'}> Twitch Featured </h1>
+              <StreamerTable streamers={streams}/>
             </div>
         );
     }

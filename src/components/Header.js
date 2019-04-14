@@ -6,7 +6,7 @@ export class Header extends Component {
         return (
             <div className="Header">
                 <ul>
-                    <li><a>{this.props.name}</a></li>
+                    {/*<li><a>{this.props.name}</a></li>*/}
                 </ul>
             </div>
         );
