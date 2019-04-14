@@ -1,39 +1,37 @@
 import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
-import {StreamerTable} from "./StreamerTable";
 
 const clientId = 'ofnmc9arbsv2hfb72z7azqedk9ljjc';
 axios.defaults.headers.common['Client-ID'] = clientId;
 
-export class FeaturedStreamsRow extends Component {
+export class StreamGameInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoading: false,
-      streams: [],
+      game: [],
     };
-    this.getStreams = this.getStreams.bind(this);
+    this.getGame = this.getGame.bind(this);
   }
 
   componentDidMount() {
-    this.getStreams();
-    setInterval(this.getStreams, 5000);
+    this.setState({isLoading: true}, this.getGame);
   }
 
   // Get api streams
-  async getStreams() {
+  async getGame() {
     // We're using axios instead of Fetch
     await axios
     // The API we're requesting data from
-        .get("https://api.twitch.tv/helix/streams?first=4")
+        .get(`https://api.twitch.tv/helix/games?id=${this.props.game}`)
         // Once we get a response, we'll map the API endpoints to our props
         // Let's make sure to change the loading state to display the data
         .then(results => {
           console.log(results);
           this.setState({
-            streams: results.data.data,
+            game: results.data.data[0],
             isLoading: false
           });
         })
@@ -44,12 +42,13 @@ export class FeaturedStreamsRow extends Component {
 
   render() {
     // set streams state as variable
-    let streams = this.state.streams;
+    let game = this.state.game;
+    let game_thumb = this.state.game.box_art_url;
 
     return (
         <div className="FeaturedStreams">
-          <h1 className={'p-5'}> Twitch Featured </h1>
-          <StreamerTable streamers={streams}/>
+          <p>{game.name}</p>
+          <img alt='gamethumb' src={game_thumb && game_thumb.replace("{height}", "200").replace("{width}", "300")}/>
         </div>
     );
   }

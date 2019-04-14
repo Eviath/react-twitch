@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../App.css';
 import {Jumbotron, Container} from "react-bootstrap";
 
