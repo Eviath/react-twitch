@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
 
-const clientId = 'ofnmc9arbsv2hfb72z7azqedk9ljjc';
-axios.defaults.headers.common['Client-ID'] = clientId;
 
 export class StreamGameInfo extends Component {
   constructor(props) {

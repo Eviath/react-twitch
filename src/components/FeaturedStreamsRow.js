@@ -3,8 +3,7 @@ import '../App.css';
 import axios from 'axios';
 import {StreamerTable} from "./StreamerTable";
 
-const clientId = 'ofnmc9arbsv2hfb72z7azqedk9ljjc';
-axios.defaults.headers.common['Client-ID'] = clientId;
+
 
 export class FeaturedStreamsRow extends Component {
   constructor(props) {
