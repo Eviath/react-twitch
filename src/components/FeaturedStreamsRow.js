@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
 import {StreamerTable} from "./StreamerTable";
-
+import {authTwitch} from '../lib/methods'
 
 
 export class FeaturedStreamsRow extends Component {
@@ -12,27 +12,47 @@ export class FeaturedStreamsRow extends Component {
       error: null,
       isLoading: false,
       streams: [],
+      access_token: null
     };
+    this.authTwitch = authTwitch.bind(this)
     this.getStreams = this.getStreams.bind(this);
   }
 
   componentDidMount() {
-    this.getStreams();
-    setInterval(this.getStreams, 5000);
+    // authorize twitch
+    this.setState({isLoading: true}, this.authTwitch());
   }
 
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    return prevState
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (snapshot.isLoading){
+      this.getStreams();
+      setInterval(this.getStreams, 5000)
+    }
+  }
+
+
   // Get api streams
-  async getStreams() {
+  getStreams() {
     // We're using axios instead of Fetch
-    await axios
+    axios
     // The API we're requesting data from
-        .get("https://api.twitch.tv/helix/streams?first=4")
+        .get("https://api.twitch.tv/helix/streams?first=4", {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: "Bearer " + this.state.access_token
+          }
+        })
+
         // Once we get a response, we'll map the API endpoints to our props
         // Let's make sure to change the loading state to display the data
         .then(results => {
-          console.log(results);
           this.setState({
             streams: results.data.data,
+            error: null,
             isLoading: false
           });
         })

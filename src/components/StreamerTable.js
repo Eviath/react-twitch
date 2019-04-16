@@ -9,10 +9,10 @@ export class StreamerTable extends Component {
   render() {
     const columns = [];
 
-    this.props.streamers.forEach((streamer) => {
+    this.props.streamers && this.props.streamers.forEach((streamer) => {
       columns.push(
           <Card style={{width: '18rem'}}>
-            <Card.Img variant="top" src={streamer.thumbnail_url.replace("{height}", "200").replace("{width}", "300")}/>
+            <Card.Img variant="top" src={streamer.thumbnail_url.replace("{height}", "800").replace("{width}", "1200")}/>
             <Card.Body>
               <Card.Title>
                 <Link to={{pathname: '/streamer', state: {stream: streamer}}}>{streamer.user_name}</Link>
