@@ -1,31 +1,35 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import Suggestions from './Suggestions'
-
+import {authTwitch} from '../lib/methods'
 
 class Search extends Component {
-  state = {
-    query: '',
-    results: [],
-    access_token: null
-  };
+  constructor() {
+    super()
+    this.state = {
+      query: '',
+      results: [],
+      access_token: null
+    };
+    this.authTwitch = authTwitch.bind(this)
+  }
 
   handleInputChange = () => {
     this.setState({
       query: this.search.value
     }, () => {
       if (this.state.query && this.state.query.length > 1) {
-        this.getInfo()
+        this.getUserInfo();
       }
     })
   };
 
   componentDidMount() {
-    this.authTwitch();
+    this.authTwitch()
   }
 
 
-  getInfo = () => {
+  getUserInfo = () => {
     axios.get(`https://api.twitch.tv/helix/users?login=${this.state.query}`, {
       headers: {
         'Content-Type': 'application/json',
@@ -36,30 +40,30 @@ class Search extends Component {
         .then(({ data }) => {
           this.setState({
             results: data.data
+          }, () => {
+            if (this.state.results && this.state.results.length > 0) {
+              this.getStreamInfo();
+            }
           })
         })
   };
 
-  authTwitch = () => {
-    console.log('auth start');
-    let data = JSON.stringify({
-      client_id: 'ofnmc9arbsv2hfb72z7azqedk9ljjc',
-      client_secret: 'qfjcszp77b0a70odi3cuyctgpu77my',
-      grant_type: "client_credentials"
-    });
+  getStreamInfo = () => {
+    axios.get(`https://api.twitch.tv/helix/streams?user_id=${this.state.results[0].id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: "Bearer " + this.state.access_token
+      }
+    })
 
-    axios.post('https://id.twitch.tv/oauth2/token', data, {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }
-    )
-        .then((res) => {
+        .then(({ data }) => {
           this.setState({
-            access_token: res.data.access_token
+            userStream: data.data
           })
         })
   };
+
+
 
 
 
@@ -71,7 +75,7 @@ class Search extends Component {
               ref={input => this.search = input}
               onChange={this.handleInputChange}
           />
-          <Suggestions results={this.state.results} />
+          <Suggestions results={this.state.results} userStream={this.state.userStream} />
         </form>
     )
   }
