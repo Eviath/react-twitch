@@ -20,15 +20,11 @@ export class EmbedTwitch extends React.Component {
   render() {
 
     return (
-        <div>
           <div id={this.props.targetID}/>
-        </div>
     )
   }
 }
 
 EmbedTwitch.defaultProps = {
   targetID: 'twitch-embed',
-  width: '940',
-  height: '480',
 };
