@@ -2,7 +2,7 @@
 
 Otherwise TwitchTV authentication will fail.
 
-- `REACT_APP_TWITCH_SECRET=yourtwitchsecret` <br>
+ `REACT_APP_TWITCH_SECRET=yourtwitchsecret` <br>
  `REACT_APP_TWITCH_CLIENT=yourtwitchclientid`
 
 You can get your API keys here: https://dev.twitch.tv/console/apps
