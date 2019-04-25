@@ -1,10 +1,20 @@
 .App {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 #twitch-embed iframe {
   width:100% !important;
   height: 80vh !important;
+}
+
+a {
+  color: #6441a4;
+}
+a:hover{
+  text-decoration: none;
 }
 
 .App-logo {
@@ -35,4 +45,96 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.jumbotron {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  height: 50px;
+  padding: 0;
+  background-color: #6441a4;
+}
+
+.jumbotron p {
+  margin: 0;
+}
+
+
+.footer {
+  background-color: #6441a4;
+  left: 0;
+  bottom: 0;
+  height: 80px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.footer::before {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width:100%;
+  height: 20px;
+  content: '';
+  background-color: #343a40!important;
+}
+
+.footer h5 {
+  color: #fff;
+  font-size: 1em;
+}
+
+.footer .container {
+  margin-top: 20px;
+}
+
+html {
+  min-height: 100%;
+}
+
+
+/* HOMEPAGE */
+
+.FeaturedStreams h1 {
+  font-size: 2em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.streamer-description {
+  display: flex;
+  height: max-content;
+}
+.streamer-avatar {
+  width: 70px;
+}
+
+.streamertable-card{
+  transition: .1s;
+  transform: translateY(0);
+  border-bottom: 5px solid transparent;
+}
+
+.streamertable-card .card-title{
+color: #6441a4;
+}
+
+.streamertable-card:hover {
+  color: #c3c3c3;
+  transition: .3s;
+  background-color: #282c34;
+  transform: translateY(-10px);
+  border-bottom: 5px solid #6441a4;
+}
+
+.streamer-link {
+  left: 0;
+  top:0;
+  position: absolute;
+  width: 100%;
+  height:100%;
+  z-index: 10;
 }

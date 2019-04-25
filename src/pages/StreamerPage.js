@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../App.css';
-import {Link} from "react-router-dom";
 import {EmbedTwitch} from '../models/EmbedTwitch'
 import {StreamGameInfo} from "../models/StreamGameInfo";
 import axios from "axios";
@@ -65,13 +64,11 @@ class StreamerPage extends Component {
 
     return (
         <div className="Header">
-          <Link to='/'> Homepage </Link>
           <h1>{stream.user_name}</h1>
+          <p>Streaming {this.state.stream && <StreamGameInfo game={stream.game_id}/>} for <span className="badge badge-secondary">{this.state.stream_viewers}</span> viewers</p>
           <p>{stream.title}</p>
-          <p>{this.state.stream_viewers}</p>
-          <p>{stream.game_id}</p>
+
             <EmbedTwitch channel={stream.user_name}/>
-          {this.state.stream && <StreamGameInfo game={stream.game_id}/>}
         </div>
     );
   }

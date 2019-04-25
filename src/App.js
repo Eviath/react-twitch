@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage'
 import SearchPage from './pages/SearchPage'
 
 
+
 class App extends Component {
   render() {
     return (

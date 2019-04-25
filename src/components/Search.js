@@ -71,6 +71,7 @@ class Search extends Component {
     return (
         <form>
           <input
+              className="form-control w-auto mx-auto"
               placeholder="Search for..."
               ref={input => this.search = input}
               onChange={this.handleInputChange}

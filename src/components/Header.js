@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../App.css';
 import {Navbar, Nav} from "react-bootstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export class Header extends Component {
   render() {
@@ -13,21 +13,11 @@ export class Header extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              {/*<Nav.Link href="#features">Search for stream</Nav.Link>*/}
-              {/*<Nav.Link href="#pricing">Pricing</Nav.Link>*/}
-              {/*<NavDropdown title="Dropdown" id="collasible-nav-dropdown">*/}
-              {/*  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>*/}
-              {/*  <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>*/}
-              {/*  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>*/}
-              {/*  <NavDropdown.Divider />*/}
-              {/*  <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>*/}
-              {/*</NavDropdown>*/}
+              {/*<Link to="/search">Search for stream</Link>*/}
             </Nav>
             <Nav>
-                <Link to="/search">Search for stream</Link>
-              {/*<Nav.Link eventKey={2} href="#memes">*/}
-              {/*  Dank memes*/}
-              {/*</Nav.Link>*/}
+              <NavLink exact to="/" className='nav-link'>Homepage</NavLink>
+              <NavLink exact to="/search" className='nav-link' >Search</NavLink>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

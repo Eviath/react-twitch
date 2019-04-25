@@ -63,10 +63,7 @@ export class StreamGameInfo extends Component {
     let game_thumb = this.state.game.box_art_url;
 
     return (
-        <div className="FeaturedStreams">
-          <p>{game.name}</p>
-          <img alt='gamethumb' src={game_thumb && game_thumb.replace("{height}", "200").replace("{width}", "300")}/>
-        </div>
+          <strong>{game.name}</strong>
     );
   }
 }

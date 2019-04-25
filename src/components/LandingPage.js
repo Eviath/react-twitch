@@ -7,9 +7,8 @@ export class LandingPage extends Component {
     return (
         <Jumbotron fluid>
           <Container>
-            <h1>React - Twitch App</h1>
             <p>
-              React application based on Twitch Api.
+              React application Twitch Api based
             </p>
           </Container>
         </Jumbotron>

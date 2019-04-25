@@ -3,7 +3,7 @@ import '../App.css';
 import axios from 'axios';
 import {StreamerTable} from "./StreamerTable";
 import {authTwitch} from '../lib/methods'
-
+import {Spinner} from "react-bootstrap";
 
 export class FeaturedStreamsRow extends Component {
   constructor(props) {
@@ -12,9 +12,9 @@ export class FeaturedStreamsRow extends Component {
       error: null,
       isLoading: false,
       streams: [],
-      access_token: null
+      access_token: null,
     };
-    this.authTwitch = authTwitch.bind(this)
+    this.authTwitch = authTwitch.bind(this);
     this.getStreams = this.getStreams.bind(this);
   }
 
@@ -33,7 +33,6 @@ export class FeaturedStreamsRow extends Component {
       setInterval(this.getStreams, 5000)
     }
   }
-
 
   // Get api streams
   getStreams() {
@@ -64,10 +63,16 @@ export class FeaturedStreamsRow extends Component {
   render() {
     // set streams state as variable
     let streams = this.state.streams;
+    let loading = <Spinner animation="grow"/>;
+    if (this.state.isLoading) {
+      return(
+          loading
+      )
+    }
 
     return (
         <div className="FeaturedStreams">
-          <h1 className={'p-5'}> Twitch Featured </h1>
+          <h1 className={'pt-5 pb-3'}> Twitch Featured </h1>
           <StreamerTable streamers={streams}/>
         </div>
     );

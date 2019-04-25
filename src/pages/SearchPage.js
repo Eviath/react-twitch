@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import '../App.css';
 import Search from "../components/Search";
-import axios from 'axios'
 
 class SearchPage extends Component {
-
 
   render() {
     return (
         <div className="SearchStreamsRow">
-          Search Page
+          <h1 className="m-5">Search Page</h1>
           <Search/>
         </div>
     );
