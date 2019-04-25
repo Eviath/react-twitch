@@ -1,3 +1,12 @@
+### To run this project, you have to set environment variables in .env file in your project root directory.
+
+Otherwise TwitchTV authentication will fail.
+
+REACT_APP_TWITCH_SECRET=yourtwitchsecret
+REACT_APP_TWITCH_CLIENT=yourtwitchclientid
+
+You can get your API keys here: https://dev.twitch.tv/console/apps
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
