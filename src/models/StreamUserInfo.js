@@ -23,7 +23,7 @@ export class StreamUserInfo extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.access_token !== prevState.access_token || this.props.streamer) {
+    if (this.state.access_token !== prevState.access_token || this.props.streamer !== prevProps.streamer) {
       this.getUserInfo()
     }
   }
